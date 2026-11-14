@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Calculadora Web</title>
+  </head>
+  <body class="min-h-screen flex flex-col justify-center items-center">
+    <main
+      class="flex flex-col justify-between gap-2 bg-gray-800 w-xs h-95 text-white p-1 rounded-md"
+    >
+      <div
+        id="pantalla"
+        class="flex flex-1 items-end justify-end border border-black pr-5 h-15 mb-4 text-3xl"
+      ></div>
+      <div id="contenedorBotones" class="grid grid-cols-4 gap-px">
+        <button
+          id="%"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          %
+        </button>
+        <button
+          id="AC"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          AC
+        </button>
+        <button
+          id="C"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          C
+        </button>
+        <button
+          id="Borrar"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          Borrar
+        </button>
+        <button
+          id="7"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          7
+        </button>
+        <button
+          id="8"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          8
+        </button>
+        <button
+          id="9"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          9
+        </button>
+        <button
+          id="x"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          x
+        </button>
+        <button
+          id="4"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          4
+        </button>
+        <button
+          id="5"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          5
+        </button>
+        <button
+          id="6"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          6
+        </button>
+        <button
+          id="-"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          -
+        </button>
+        <button
+          id="1"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          1
+        </button>
+        <button
+          id="2"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          2
+        </button>
+        <button
+          id="3"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          3
+        </button>
+        <button
+          id="+"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          +
+        </button>
+        <button
+          id=","
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          ,
+        </button>
+        <button
+          id="0"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          0
+        </button>
+        <button
+          id="="
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          =
+        </button>
+        <button
+          id="/"
+          class="cursor-pointer bg-gray-500 hover:bg-gray-600 h-12.75 p-2 rounded-sm"
+        >
+          /
+        </button>
+      </div>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>
