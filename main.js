@@ -41,7 +41,7 @@ let operacionMatematica;
 const pantalla = document.getElementById("pantalla");
 
 //
-const botones = [
+const botonesNumericos = [
   Btn1,
   Btn2,
   Btn3,
@@ -52,10 +52,38 @@ const botones = [
   Btn8,
   Btn9,
   Btn0,
+];
+const botonesOperacionales = [
   BtnMultiplicar,
   BtnRestar,
   BtnIgual,
   BtnSuma,
   BtnComa,
   BtnDividir,
+  BtnPorcentaje,
+  BtnBorradoOperacion,
+  BtnReinicioCalculadora,
+  BtnBorrarDatos,
 ];
+
+const obtenerValorBoton = (botones) => {
+  for (const b of botones) {
+    b.addEventListener("click", () => {
+      numeroActual = b.textContent.trim();
+      mostrarEnPantalla(numeroActual);
+    });
+  }
+};
+
+const mostrarEnPantalla = (valor) => {
+  //Funciona par aponer el primer valor
+  if (pantalla.textContent === "") {
+    pantalla.textContent = valor;
+  } else {
+    let numAnterior = pantalla.textContent;
+    numeroActual = numAnterior + valor;
+    pantalla.textContent = numeroActual;
+  }
+};
+
+obtenerValorBoton(botonesNumericos);
