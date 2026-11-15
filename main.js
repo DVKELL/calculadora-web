@@ -77,13 +77,16 @@ const obtenerValorBoton = (botones) => {
 
 const mostrarEnPantalla = (valor) => {
   //Funciona par aponer el primer valor
-  if (pantalla.textContent === "") {
+  if (pantalla.textContent === "" || pantalla.textContent === "0") {
     pantalla.textContent = valor;
   } else {
-    let numAnterior = pantalla.textContent;
-    numeroActual = numAnterior + valor;
-    pantalla.textContent = numeroActual;
+    // Leo todo el textcontent de la pantalla y le concateno el valor
+    pantalla.textContent = pantalla.textContent + valor;
   }
+
+  //El contenido de la pantalla se convierte en numero y se almacena
+  numeroActual = Number(pantalla.textContent);
+  console.log(numeroActual);
 };
 
 obtenerValorBoton(botonesNumericos);
