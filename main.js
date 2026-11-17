@@ -92,7 +92,6 @@ const mostrarEnPantalla = (valor) => {
 
   //El contenido de la pantalla se convierte en numero y se almacena
   numeroActual = Number(pantalla.textContent);
-  console.log(numeroActual);
 };
 
 // Recorre los botones, les agrega un Event listener y muestra en pantalla el numero seleccionado
@@ -222,11 +221,9 @@ const operacionARealizar = (botonesOperacionales) => {
           if (pantalla.textContent.length > 1) {
             pantalla.textContent = pantalla.textContent.slice(0, -1);
             numeroAcumulado = Number(pantalla.textContent);
-            console.log(numeroAcumulado);
           } else {
             pantalla.textContent = 0;
             numeroAcumulado = Number(pantalla.textContent);
-            console.log(numeroAcumulado);
           }
         });
         break;
