@@ -32,15 +32,17 @@ const BtnBorradoOperacion = document.getElementById("AC");
 const BtnReinicioCalculadora = document.getElementById("C");
 const BtnBorrarDatos = document.getElementById("Borrar");
 
+const pantalla = document.getElementById("pantalla");
+const operacionesContainer = document.getElementById("operaciones");
+
 // Definicion de Variables
 let numeroActual;
 let numeroAcumulado;
 let operacionMatematica;
+let resultado;
+let segundoNum;
 
-//
-const pantalla = document.getElementById("pantalla");
-
-//
+// Arreglos
 const botonesNumericos = [
   Btn1,
   Btn2,
@@ -52,13 +54,14 @@ const botonesNumericos = [
   Btn8,
   Btn9,
   Btn0,
+  BtnComa,
 ];
+
 const botonesOperacionales = [
   BtnMultiplicar,
   BtnRestar,
   BtnIgual,
   BtnSuma,
-  BtnComa,
   BtnDividir,
   BtnPorcentaje,
   BtnBorradoOperacion,
@@ -66,15 +69,18 @@ const botonesOperacionales = [
   BtnBorrarDatos,
 ];
 
-const obtenerValorBoton = (botones) => {
-  for (const b of botones) {
-    b.addEventListener("click", () => {
-      numeroActual = b.textContent.trim();
-      mostrarEnPantalla(numeroActual);
-    });
-  }
+// diccionario
+let posiblesOperaciones = {
+  suma: "+",
+  resta: "-",
+  multiplicar: "x",
+  dividir: "/",
+  porcentaje: "%",
 };
 
+// Funciones
+
+// Muestra en pantalla los botones que seleccione el usuario
 const mostrarEnPantalla = (valor) => {
   //Funciona par aponer el primer valor
   if (pantalla.textContent === "" || pantalla.textContent === "0") {
@@ -89,4 +95,165 @@ const mostrarEnPantalla = (valor) => {
   console.log(numeroActual);
 };
 
-obtenerValorBoton(botonesNumericos);
+// Recorre los botones, les agrega un Event listener y muestra en pantalla el numero seleccionado
+const obtenerValorBoton = (botones) => {
+  for (const b of botones) {
+    b.addEventListener("click", () => {
+      let botonActual = b.textContent.trim();
+      mostrarEnPantalla(botonActual);
+    });
+  }
+};
+
+// Obtiene el numero que esta en pantalla, lo almacena en una variable y limpia la pantalla
+const guardarNumAnterior = () => {
+  numeroAcumulado = Number(pantalla.textContent);
+  pantalla.textContent = "";
+};
+
+// Obtiene el primer numero, el operador y lo muestra en pantalla
+const verOperacionesRealizadas1 = () => {
+  operacionesContainer.textContent = `${numeroAcumulado} ${posiblesOperaciones[operacionMatematica]}`;
+};
+
+// Obtiene el segundo numero y lo muestra en pantalla
+const verOperacionesRealizadas2 = () => {
+  operacionesContainer.textContent = `
+  ${operacionesContainer.textContent} ${String(segundoNum)} =
+  `;
+};
+
+// Obtiene el resultado de la operacion y lo muestra en pantalla
+const obtenerResultado = (operacion) => {
+  switch (operacion) {
+    case "suma":
+      resultado = numeroAcumulado + Number(pantalla.textContent);
+      segundoNum = Number(pantalla.textContent);
+      pantalla.textContent = resultado;
+      break;
+    case "resta":
+      resultado = numeroAcumulado - Number(pantalla.textContent);
+      segundoNum = Number(pantalla.textContent);
+      pantalla.textContent = resultado;
+      break;
+    case "multiplicar":
+      resultado = numeroAcumulado * Number(pantalla.textContent);
+      segundoNum = Number(pantalla.textContent);
+      pantalla.textContent = resultado;
+      break;
+    case "dividir":
+      resultado = numeroAcumulado / Number(pantalla.textContent);
+      segundoNum = Number(pantalla.textContent);
+      pantalla.textContent = resultado;
+      break;
+    case "porcentaje":
+      resultado = (numeroAcumulado * Number(pantalla.textContent)) / 100;
+      segundoNum = Number(pantalla.textContent);
+      pantalla.textContent = resultado;
+      break;
+
+    default:
+      break;
+  }
+};
+
+// Recorre cada uno de los botones y asigna funciones segun la operacion
+const operacionARealizar = (botonesOperacionales) => {
+  for (const b of botonesOperacionales) {
+    switch (b.textContent.trim()) {
+      case "%":
+        b.addEventListener("click", () => {
+          guardarNumAnterior();
+          operacionMatematica = "porcentaje";
+          verOperacionesRealizadas1();
+        });
+        break;
+
+      case "AC":
+        b.addEventListener("click", () => {
+          pantalla.innerHTML = 0;
+          numeroActual = 0;
+        });
+        break;
+
+      case "C":
+        b.addEventListener("click", () => {
+          pantalla.innerHTML = 0;
+          numeroActual = 0;
+          numeroAcumulado = 0;
+          operacionesContainer.innerHTML = "";
+        });
+        break;
+
+      case "x":
+        b.addEventListener("click", () => {
+          guardarNumAnterior();
+          operacionMatematica = "multiplicar";
+          verOperacionesRealizadas1();
+        });
+        break;
+
+      case "-":
+        b.addEventListener("click", () => {
+          guardarNumAnterior();
+          operacionMatematica = "resta";
+          verOperacionesRealizadas1();
+        });
+        break;
+
+      case "+":
+        b.addEventListener("click", () => {
+          guardarNumAnterior();
+          operacionMatematica = "suma";
+          verOperacionesRealizadas1();
+        });
+        break;
+
+      case "/":
+        b.addEventListener("click", () => {
+          guardarNumAnterior();
+          operacionMatematica = "dividir";
+          verOperacionesRealizadas1();
+        });
+        break;
+
+      case "Borrar":
+        b.addEventListener("click", () => {
+          if (pantalla.textContent.length > 1) {
+            pantalla.textContent = pantalla.textContent.slice(0, -1);
+            numeroAcumulado = Number(pantalla.textContent);
+            console.log(numeroAcumulado);
+          } else {
+            pantalla.textContent = 0;
+            numeroAcumulado = Number(pantalla.textContent);
+            console.log(numeroAcumulado);
+          }
+        });
+        break;
+
+      case "=":
+        b.addEventListener("click", () => {
+          if (operacionMatematica !== "") {
+            obtenerResultado(operacionMatematica);
+
+            // Evita que se pueda spamear el boton =
+            operacionMatematica = "";
+            verOperacionesRealizadas2();
+          }
+        });
+        break;
+
+      default:
+        break;
+    }
+  }
+};
+
+// Funcion principal
+const calculadora = () => {
+  pantalla.textContent = 0;
+  obtenerValorBoton(botonesNumericos);
+  operacionARealizar(botonesOperacionales);
+};
+
+calculadora();

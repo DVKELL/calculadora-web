@@ -8,12 +8,15 @@
   </head>
   <body class="min-h-screen flex flex-col justify-center items-center">
     <main
-      class="flex flex-col justify-between gap-2 bg-gray-800 w-xs h-95 text-white p-1 rounded-md"
+      class="flex flex-col justify-between gap-2 bg-gray-800 w-xs h-100 text-white p-1 rounded-md"
     >
-      <div
-        id="pantalla"
-        class="flex flex-1 items-end justify-end border border-black pr-5 h-15 mb-4 text-3xl"
-      ></div>
+      <div id="pantallaContainer" class="flex-1 flex flex-col justify-between">
+        <div id="operaciones" class="flex justify-end pr-6 pt-4"></div>
+        <div
+          id="pantalla"
+          class="flex items-end justify-end border-b border-black pr-5 text-3xl"
+        ></div>
+      </div>
       <div id="contenedorBotones" class="grid grid-cols-4 gap-px">
         <button
           id="%"
